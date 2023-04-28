@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="/stylesheets/transaction.css">
+<h1>Transaction for <%= user.username %>
+</h1>
+<p>Here is your list of things to do!</p>
+<div id="transaction-container">
+    <div id="button-container">
+        <a href="/transaction/byCategory">group by category</a>
+        <a href="/transaction?sortBy=category">sory by category</a>
+        <a href="/transaction?sortBy=amount">sort by amount</a>
+        <a href="/transaction?sortBy=description">sort by description</a>
+        <a href="/transaction?sortBy=date">sort by date</a>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>description</th>
+                <th>amount</th>
+                <th>category</th>
+                <th>date</th>
+                <th>delete</th>
+                <th>edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i=0; i < transactions.length; i++) {%>
+                <tr>
+                    <td>
+                        <%= transactions[i].description%>
+                    </td>
+                    <td>
+                        <%= transactions[i].amount%>
+                    </td>
+                    <td>
+                        <%= transactions[i].category%>
+                    </td>
+                    <td>
+                        <%= transactions[i].date.toDateString()%>
+                    </td>
+                    <td><a href="/transaction/remove/<%= transactions[i]._id%>"><i class="bi bi-trash"></i></a> </td>
+                    <td><a href="/transaction/edit/<%= transactions[i]._id%>"><i class="bi bi-pencil-square"></i></a>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+</div>
+
+<div id="add-transaction">
+    <h1>Add a New Transaction</h1>
+    <form action="/add-transaction" method="post">
+        <input type="text" name="description" id="description" placeholder="description">
+        <input type="text" name="category" id="category" placeholder="category">
+        <input type="text" name="amount" id="amount" placeholder="amount">
+        <input type="text" name="date" id="date" placeholder="mm/dd/yyyy">
+        <input type="submit" value="store">
+    </form>
+</div>

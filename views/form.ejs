@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="/stylesheets/form.css">
+<h1>ChatGPT</h1>
+
+<div id="form-container">
+    <div id="history-container">
+        <h2>Chat History</h2>
+        <ul id="chat-history">
+            <% for(let i=0; i < chat.length; i++) { %>
+                <li>
+                    <%= chat[i] %>
+                </li>
+                <% } %>
+        </ul>
+    </div>
+
+
+    <div id="chat-container">
+        <div id="record"></div>
+        <div id="chat-sub">
+            <input type="text" id="chat-input" name="content" placeholder="Enter your question...">
+            <button id="submit-btn">Submit</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const submitBtn = document.querySelector('#submit-btn');
+    const chatInput = document.querySelector('#chat-input');
+    const record = document.querySelector('#record');
+    const url = window.location.href;
+    const id = url.split('/').pop();
+
+    submitBtn.addEventListener('click', () => {
+        appendRequest(chatInput.value);
+        // console.log(chatInput.value);
+        sendAskRequest(chatInput.value, id).then(data => {
+            console.log(data);
+            appendResponse(data.res);
+            chatInput.value = "";
+        })
+
+    })
+    const appendRequest = (str) => {
+        const block = document.createElement('div');
+        block.classList.add('inf');
+        const p = document.createElement('p');
+        p.innerText = str;
+        p.classList.add('request');
+        block.appendChild(p);
+        record.appendChild(block);
+    }
+
+    const appendResponse = (str) => {
+        const block = document.createElement('div');
+        block.classList.add('inf');
+        const p = document.createElement('p');
+        p.innerText = str;
+        p.classList.add('response');
+        block.appendChild(p);
+        record.appendChild(block);
+    }
+
+    const sendAskRequest = (content, id) => {
+        return fetch('/ask', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ content, id })
+        }).then(res => res.json())
+    }
+</script>

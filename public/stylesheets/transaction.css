@@ -1,0 +1,16 @@
+#button-container{
+    margin-bottom: 2em;
+}
+#button-container > a{
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    padding: 1em;
+    margin-right: 1em;
+    background-color: #316CF4;
+    border: none;
+    border-radius: 5px;
+}
+#add-transaction > form > input{
+    display: block;
+}

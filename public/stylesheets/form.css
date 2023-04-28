@@ -1,0 +1,51 @@
+#form-container{
+
+    position: relative;
+}
+
+#history-container{
+    height: 80vh;
+    width: 20vw;
+    position: absolute;
+    left: 0;
+
+}
+
+#chat-container{
+    height: 80vh;
+    width: 70vw;
+    position: absolute;
+    right: 0;
+
+}
+
+.request{
+    float: right;
+}
+
+.inf{
+    font-size: 2em;
+}
+
+.inf::after {
+    clear:both;
+    content:'.';
+    display:block;
+    width: 0;
+    height: 0;
+    visibility:hidden;
+}
+#record{
+    overflow: auto;
+    height: 90%;
+}
+#chat-sub{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+#chat-input{
+    width: 80%;
+    padding: 1em;
+}

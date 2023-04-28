@@ -1,0 +1,18 @@
+<style>
+    #edit-transaction>form>input {
+        display: block;
+    }
+</style>
+<div id="edit-transaction">
+    <h1>Edit <%= transaction.description%>
+    </h1>
+    <form action="/transaction/edit/<%=transaction._id%>" method="post">
+        <input type="text" name="description" id="description" placeholder="description"
+            value="<%= transaction.description%>">
+        <input type="text" name="category" id="category" placeholder="category" value="<%= transaction.category%>">
+        <input type="text" name="amount" id="amount" placeholder="amount" value="<%= transaction.amount%>">
+        <input type="text" name="date" id="date" placeholder="mm/dd/yyyy"
+            value="<%= (transaction.date.getMonth() + 1) + '/' + transaction.date.getDate() + '/' +transaction.date.getFullYear()%>">
+        <input type="submit" value="Edit">
+    </form>
+</div>

@@ -1,0 +1,27 @@
+<h1>Transaction for <%= user.username %>
+</h1>
+<p>Here is yourt list of things to do!</p>
+<ul>
+    <li><a href="/transaction">Transaction table</a></li>
+</ul>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>category</th>
+            <th>amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let i=0; i < result.length; i++) {%>
+            <tr>
+                <td>
+                    <%= result[i]._id %>
+                </td>
+                <td>
+                    <%= result[i].totalAmount %>
+                </td>
+            </tr>
+            <% } %>
+    </tbody>
+</table>
