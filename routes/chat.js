@@ -11,7 +11,7 @@ const isLoggedIn = (req, res, next) => {
     }
 }
 const configuration = new Configuration({
-    apiKey: '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'
+    apiKey: process.env.OPENAI_KEY
 });
 const openai = new OpenAIApi(configuration);
 router.get('/form/:id', isLoggedIn, async (req, res, next) => {
